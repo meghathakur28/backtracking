@@ -1,0 +1,27 @@
+class HelloWorld {
+    public static void print(int sr,int sc,int er,int ec,String s,boolean[][] isvisited)
+    {
+        if(sr<0||sc<0)return;
+        if(sr>er||sc>ec)return;
+        if(isvisited[sr][sc]==true)return;
+        if(sr==er&&sc==ec)
+        {
+            System.out.println(s);
+            return;
+        }
+        isvisited[sr][sc]=true;
+        print(sr,sc+1,er,ec,s+"R",isvisited);
+        print(sr+1,sc,er,ec,s+"D",isvisited);
+        print(sr-1,sc,er,ec,s+"U",isvisited);
+        print(sr,sc-1,er,ec,s+"L",isvisited);
+        isvisited[sr][sc]=false;
+        
+    }
+    public static void main(String[] args) {
+        int rows= 3;
+        int col=3;
+        //by default this will give u the false value ;
+        boolean[][] isvisited=new boolean[rows][col];
+        print(0,0,rows-1,col-1,"",isvisited);
+    }
+}
