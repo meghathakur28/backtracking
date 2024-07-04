@@ -1,0 +1,25 @@
+class HelloWorld {
+    public static void print(int sr,int sc,int er,int ec,String s,int[][] mat)
+    {
+        if(sr<0||sc<0)return;
+        if(sr>er||sc>ec)return;
+        if(mat[sr][sc]==1)return;
+        if(sr==er&&sc==ec)
+        {
+            System.out.println(s);
+            return;
+        }
+        mat[sr][sc]=1;
+        print(sr,sc+1,er,ec,s+"R",mat);
+        print(sr+1,sc,er,ec,s+"D",mat);
+        print(sr,sc-1,er,ec,s+"L",mat);
+        print(sr-1,sc,er,ec,s+"U",mat);
+        mat[sr][sc]=0;
+    }
+    public static void main(String[] args) {
+        int rows= 4;
+        int col=4;
+        int[][] mat={{0,1,0,0},{0,0,0,0},{1,0,0,0},{1,1,0,0}};
+        print(0,0,rows-1,col-1,"",mat);
+    }
+}
