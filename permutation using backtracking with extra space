@@ -1,0 +1,37 @@
+import java.util.*;
+class HelloWorld {
+    public static void printp(int[] nums,boolean[] arr,List<Integer> al,List<List<Integer>> ans)
+    {
+        if(al.size()==nums.length)
+        {
+            List<Integer> list= new ArrayList<>();
+            for(int i=0;i<al.size();i++)
+            {
+                list.add(al.get(i));
+            }
+            ans.add(list);
+            return;
+        }
+        for(int i=0;i<nums.length;i++)
+        {
+            if(arr[i]!=true)
+            {
+            al.add(nums[i]);
+            arr[i]=true;
+            printp(nums,arr,al,ans);
+            arr[i]=false;
+            al.remove(al.size()-1);
+            }
+        }
+    }
+    public static void main(String[] args)
+    {
+        int[] nums={1,2,3};
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> al= new ArrayList<>();
+        boolean[] arr = new boolean[nums.length];
+        printp(nums,arr,al,ans);
+        System.out.println(ans.size());
+        System.out.println(ans);
+    }
+}
